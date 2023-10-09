@@ -1,4 +1,4 @@
-configuration XOAPModuleTemplateDSC
+configuration XOAPDemoConfigurationDSC
 {
     param
     (
@@ -6,13 +6,13 @@ configuration XOAPModuleTemplateDSC
         [string[]]$NodeName = 'localhost'
     )
 
-    Import-Module XOAPModuleTemplateDSC
-    Import-DSCResource -ModuleName XOAPModuleTemplateDSC
+    Import-Module XOAPDemoConfigurationDSC
+    Import-DSCResource -ModuleName XOAPDemoConfigurationDSC
 
     Node $NodeName
     {
 
-        $moduleRoot = [io.path]::GetDirectoryName((Get-Module XOAPModuleTemplateDSC).Path)
+        $moduleRoot = [io.path]::GetDirectoryName((Get-Module XOAPDemoConfigurationDSC).Path)
         #$examples = "$moduleRoot\Examples"
 
         # Install the IIS role
