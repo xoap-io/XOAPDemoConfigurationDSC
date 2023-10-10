@@ -28,7 +28,7 @@ Configuration 'XOAPDemoConfigurationDSC'
     Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_UserSettings' -ModuleVersion '0.0.1'
     Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_VirtualMemory' -ModuleVersion '0.0.1'
     Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_WindowsUpdates' -ModuleVersion '0.0.1'
-
+    
     Node 'XOAPDemoConfigurationDSC'
     {
         AppxPackages 'XOAP_AppxPackages'

@@ -1,6 +1,6 @@
-# XOAPModuleTemplateDSC
+# XOAPDemoConfigurationDSC
 
-This repository is a template that can be used as a starting point for creating new DSC modules and resources.
+This repository contains a PowerShell DSC module for XOAP demo purposes.
 
 ## Code of Conduct
 
@@ -12,48 +12,66 @@ Please check out common DSC Community [contributing guidelines](https://dsccommu
 
 ## Change log
 
-A full list of changes in each version can be found in the [change log](CHANGELOG.md).
-
-## Documentation
-
-This script is used to easily create new DSC modules and resources.
+A full list of changes in each version can be found in the [Releases](https://github.com/xoap-io/XOAPDemoConfigurationDSC/releases).
 
 ## Prerequisites
 
-Please install Plaster first and make sure it's present.
+Be sure that the following DSC modules are installed on your system:
 
-```powershell
-Install-Module Plaster
-Import-Module Plaster
+- DSCR_AppxPackage (0.3.0)
+- ComputerManagementDSC (9.0.0)
+- AuditPolicyDSC (1.4.0.0)
+- GPRegistryPolicyDsc (1.2.0)
+- FileContentDsc (1.3.0.151)
+- NetworkingDsc (9.0.0)
+- xRemoteDesktopSessionHost (2.1.0)
+- xPSDesiredStateConfiguration (9.1.0)
+- SecurityPolicyDSC (2.10.0.0)
+- UserRegistryDSC (0.1.3)
+- xWindowsUpdate (2.8.0.0)
+
+## DSC Resources
+
+To implement the XOAP demo configuration, add the following resources to your DSC configuration:
+
+
+```PowerShell
+Configuration 'XOAPDemoConfigurationDSC'
+{
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_AppxPackages' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_AuditPolicy' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_Defender' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_Edge' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_Environment' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_FeaturesAndRoles' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_Firewall' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_Iexplorer' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_LanguageAndRegion' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_Networking' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_PendingReboot' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_PowerPlan' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_PowerShell' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_Privacy' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_PSModules' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_Registry' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_RemoteDesktop' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_RunProcess' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_ScheduledTasks' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_Services' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_Shortcuts' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_SMBConfiguration' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_UserAccountControl' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_UserRightsAssignment' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_UsersAndGroups' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_UserSettings' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_VirtualMemory' -ModuleVersion '0.0.1'
+Import-DSCResource -Module 'XOAPDemoConfigurationDSC' -Name 'XOAP_WindowsUpdates' -ModuleVersion '0.0.1'
+
+    Node 'XOAPDemoConfigurationDSC'
+    {
+        AppxPackages 'XOAP_AppxPackages'
+        {
+        }
+    }
+}
 ```
-
-## Create new DSC modules
-
-Modules will be automatically created once you are creating a new DSC resource.
-
-## Create new DSC resources
-
-DSC resources can easily be deployed via the invocation of
-
-```powershell
-.\New-CompositeResource.ps1
-```
-
-with parameters
-
-```powershell
-.\New-CompositeResource.ps1 -Module XOAPModuleTemplateDSC -Version 0.0.1 -Resource ScheduledTasks
-```
-
-The parameter list is as followed:
-
-| Parameter | Description                            | Note |
-|-----------|----------------------------------------|------|
-| Module    | Name of the outer module part          | -    |
-| Version   | Target version of the module           | -    |
-| Ressource | The name of the ressource /config part | -    |
-
-### Examples
-
-You can review the [Examples](/Examples/Resources) directory in the **XOAPModuleTemplateDSC** module
-for some general use scenarios for all the resources that are in the module.
