@@ -27,7 +27,7 @@ Author = 'XOAP.io'
 CompanyName = 'RIS AG'
 
 # Copyright statement for this module
-Copyright = '(c) 2023 XOAP. All rights reserved.'
+Copyright = '(c) XOAP. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'VirtualMemory'
